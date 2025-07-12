@@ -42,7 +42,7 @@ def button_gen_click(text_box_name, label_trangthai):
     if name == "":
         label_trangthai.config(text="Vui long nhap ten", fg="red")
         return
-    if not os.path.exists("Cauhoi"):
+    if not os.path.exists(f"{root_path}/Cauhoi"):
         os.mkdir("Cauhoi")
     
     noti = worker.tao_cauhoi(root_path, name, cauhoi_root)
