@@ -2,7 +2,7 @@ import os
 import data_worker as worker
 import tkinter as tk
 
-root_path = os.getcwd()
+root_path = os.path.dirname(os.path.abspath(__file__))
 danhsach_id = []
 cauhoi_root = []
 
@@ -26,9 +26,13 @@ def button_import_click(text_box, label_trangthai, text_box_name, label_soluong)
     text_box.delete("1.0", tk.END)
    
 
-def button_clear_click(text_box):
+def button_clear_click(text_box, label_soluong):
+    global danhsach_id, cauhoi_root
     text_box.delete("1.0", tk.END)
-
+    label_soluong.config(text="So luong cau hoi: 0", fg="black")
+    danhsach_id = []
+    cauhoi_root = []
+  
 
 def button_gen_click(text_box_name, label_trangthai):
     if ( len(danhsach_id) == 0):
@@ -81,7 +85,7 @@ def main():
 
     button_clear = tk.Button(root, text="Clear du lieu", font=("Arial", 14), cursor="hand2")
     button_clear.place(x=225, y=655, width=150, height=50)
-    button_clear.config(command=lambda: button_clear_click(text_box))
+    button_clear.config(command=lambda: button_clear_click(text_box, label_soluong))
 
     button_gen = tk.Button(root, text="Tao file cau hoi", font=("Arial", 14), cursor="hand2")
     button_gen.place(x=780, y=655, width=150, height=50)

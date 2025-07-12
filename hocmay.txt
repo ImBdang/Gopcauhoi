@@ -1,0 +1,637 @@
+{
+    "code": "success",
+    "message": "Request success!",
+    "draw": 1,
+    "next": 2,
+    "count": 1,
+    "recordsTotal": 1514173,
+    "recordsFiltered": 1,
+    "data": [
+        {
+            "id": 1576723,
+            "class_plan_activity_id": 0,
+            "av": 0,
+            "class_id": 2120,
+            "time": 0,
+            "questions": [
+                117445,
+                117479,
+                117336,
+                117514,
+                117322,
+                117216,
+                117478,
+                117554,
+                117446,
+                117467,
+                117593,
+                117603,
+                117531,
+                117239,
+                117355,
+                117465,
+                117287,
+                117261
+            ],
+            "course_id": 20286,
+            "status": -1,
+            "created_at": "2025-07-12T17:04:38.000Z",
+            "week": 1,
+            "test": [
+                {
+                    "id": 117216,
+                    "question_number": 0,
+                    "question_direction": "<p>Mục tiêu chính của học máy là gì?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Tạo ra mô hình Toán học</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Phân tích hình ảnh</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Xử lý văn bản</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Dự đoán từ dữ liệu</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 1,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117239,
+                    "question_number": 0,
+                    "question_direction": "<p>Mục tiêu cốt lõi của học máy trong các hệ thống thông minh là gì?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Tăng tốc độ xử lý phần cứng cho máy tính.</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Tự động hóa việc thu thập và lưu trữ dữ liệu lớn.</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Tối ưu hóa khả năng suy luận logic của hệ chuyên gia.</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Tìm ra các mô hình hoặc mẫu ẩn trong dữ liệu để đưa ra dự đoán hoặc quyết định.</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 1,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117261,
+                    "question_number": 0,
+                    "question_direction": "<p>Phát biểu nào sau đây mô tả đúng nhất về mối quan hệ giữa <strong data-start=\"1476\" data-end=\"1515\">trí tuệ nhân tạo (AI), học máy (Machine Learning)</strong> và <strong data-start=\"1519\" data-end=\"1535\">học sâu (Deep Learning)</strong>?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>AI là một phần của học sâu, còn học máy nằm ngoài hai lĩnh vực này.</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Học sâu là tập con của AI, còn học máy là tập hợp riêng biệt.</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Học sâu là một phần của học máy, và học máy là một nhánh của AI.</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>AI và học sâu là hai lĩnh vực không liên quan đến học máy.</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 1,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117287,
+                    "question_number": 0,
+                    "question_direction": "<p>Trong bối cảnh AI hiện nay, mục tiêu của học máy là gì?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Hiển thị dữ liệu đầu vào dưới dạng hình ảnh</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Mô hình hóa hành vi con người bằng dữ liệu</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Tự động phát hiện quy luật hoặc dự đoán từ dữ liệu quá khứ</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Lưu trữ dữ liệu hiệu quả hơn</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117322,
+                    "question_number": 0,
+                    "question_direction": "<p>Một ứng dụng điển hình của học máy trong thương mại điện tử là gì?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Dự đoán doanh thu quý</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Tạo hóa đơn điện tử</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Gợi ý sản phẩm cho người dùng dựa trên lịch sử mua hàng</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Tính toán giá vận chuyển</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117336,
+                    "question_number": 0,
+                    "question_direction": "<p>Học sâu (Deep Learning) khác biệt với học máy truyền thống ở điểm nào sau đây?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Không dùng mạng neuron</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Không cần dữ liệu</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Dùng mạng neuron nhiều tầng để học đặc trưng phức tạp</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Dễ triển khai hơn trong mọi tình huống</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117355,
+                    "question_number": 0,
+                    "question_direction": "<p>Trong thị giác máy tính (Computer Vision), học máy giúp:</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Nâng cao độ phân giải màn hình</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Phân tích và nhận dạng các đối tượng trong ảnh hoặc video</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Tạo ảnh động</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Thiết kế giao diện người dùng</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117445,
+                    "question_number": 0,
+                    "question_direction": "<p>Điền đáp án đúng vào chỗ trống.</p>",
+                    "question_type": "drag_drop",
+                    "answer_option": [
+                        {
+                            "id": "21",
+                            "value": "mô phỏng"
+                        },
+                        {
+                            "id": "20",
+                            "value": "mã hóa"
+                        },
+                        {
+                            "id": "19",
+                            "value": "lưu trữ"
+                        },
+                        {
+                            "id": "15",
+                            "value": "học hỏi"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117446,
+                    "question_number": 0,
+                    "question_direction": "Học máy là một lĩnh vực trong AI tập trung vào việc xây dựng các hệ thống có khả năng [______] từ dữ liệu mà không cần lập trình rõ ràng.",
+                    "question_type": "drag_drop",
+                    "answer_option": [],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 117445,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117465,
+                    "question_number": 0,
+                    "question_direction": "<p>Hãy chọn nội dung chính xác vào chỗ trống</p>",
+                    "question_type": "drag_drop",
+                    "answer_option": [
+                        {
+                            "id": "6",
+                            "value": "trí tuệ cảm xúc"
+                        },
+                        {
+                            "id": "5",
+                            "value": "ngành y tế"
+                        },
+                        {
+                            "id": "1",
+                            "value": "thương mại điện tử "
+                        },
+                        {
+                            "id": "7",
+                            "value": "trò chơi điện tử"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117467,
+                    "question_number": 0,
+                    "question_direction": "Một trong những ví dụ phổ biến nhất của học máy trong đời sống là [   ], nơi các mô hình học từ hành vi mua sắm của người dùng để đề xuất sản phẩm.",
+                    "question_type": "drag_drop",
+                    "answer_option": [],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 117465,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117478,
+                    "question_number": 0,
+                    "question_direction": "<p>Chọn từ thích hợp đưa vào chỗ trống?</p>",
+                    "question_type": "drag_drop",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "mạng neuron nhiều tầng "
+                        },
+                        {
+                            "id": "3",
+                            "value": "cây quyết định"
+                        },
+                        {
+                            "id": "4",
+                            "value": "mô hình tuyến tính"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117479,
+                    "question_number": 0,
+                    "question_direction": "Khác với các thuật toán học máy truyền thống, học sâu sử dụng [   ] để trích xuất đặc trưng từ dữ liệu đầu vào.",
+                    "question_type": "drag_drop",
+                    "answer_option": [],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 117478,
+                    "media": null,
+                    "config": {
+                        "cols": 1,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117514,
+                    "question_number": 0,
+                    "question_direction": "<p>Thư viện <strong data-start=\"420\" data-end=\"430\">Pandas</strong> thường được sử dụng trong Python để làm gì?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Vẽ biểu đồ nâng cao</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Xử lý ảnh số</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Phân tích và xử lý dữ liệu dạng bảng (DataFrame)</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Tính toán ma trận</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 1,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117531,
+                    "question_number": 0,
+                    "question_direction": "<p>Tại sao nên sử dụng Anaconda khi làm việc với các dự án học máy?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Vì Anaconda có thể chạy trên điện thoại</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Vì nó tự động hóa toàn bộ quá trình viết mã</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Vì Anaconda giúp cài đặt thư viện nhanh chóng và quản lý môi trường hiệu quả</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Vì Anaconda thay thế hoàn toàn Python</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 2,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117554,
+                    "question_number": 0,
+                    "question_direction": "<p>Bạn muốn cài đặt thư viện <code data-start=\"1358\" data-end=\"1372\">scikit-learn</code> trong môi trường Anaconda, lệnh nào phù hợp?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<pre><code class=\"language-plaintext\">conda run sklearn</code></pre>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<pre><code class=\"language-plaintext\">conda install scikit-learn</code></pre>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<pre><code class=\"language-plaintext\">pip install conda sklearn</code></pre>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<pre><code class=\"language-plaintext\">python install scikit</code></pre>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": false
+                    },
+                    "skill": null,
+                    "cdr": 3,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117593,
+                    "question_number": 0,
+                    "question_direction": "<p>Sau khi khởi động Anaconda Navigator, bạn muốn mở một trình biên tập mã đơn giản để viết và chạy Python. Bạn nên chọn công cụ nào?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<p>Visual Studio Code</p>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<p>Anaconda Prompt</p>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<p>Jupyter Notebook</p>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<p>Git Bash</p>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 3,
+                    "code": "",
+                    "number_answer_correct": 1
+                },
+                {
+                    "id": 117603,
+                    "question_number": 0,
+                    "question_direction": "<p>Trong Jupyter Notebook, để hiển thị đồ thị từ thư viện <code data-start=\"1898\" data-end=\"1910\">matplotlib</code>, bạn cần thêm dòng nào sau đây vào đầu notebook?</p>",
+                    "question_type": "radio",
+                    "answer_option": [
+                        {
+                            "id": "1",
+                            "value": "<pre><code class=\"language-plaintext\">%load matplotlib inline</code></pre>"
+                        },
+                        {
+                            "id": "2",
+                            "value": "<pre><code class=\"language-plaintext\">import matplotlib</code></pre>"
+                        },
+                        {
+                            "id": "3",
+                            "value": "<pre><code class=\"language-plaintext\">from matplotlib import inline</code></pre>"
+                        },
+                        {
+                            "id": "4",
+                            "value": "<pre><code class=\"language-plaintext\">%matplotlib inline</code></pre>"
+                        }
+                    ],
+                    "shuff": null,
+                    "part": 0,
+                    "group_id": 0,
+                    "media": null,
+                    "config": {
+                        "cols": 2,
+                        "invertedAnswer": true
+                    },
+                    "skill": null,
+                    "cdr": 3,
+                    "code": "",
+                    "number_answer_correct": 1
+                }
+            ]
+        }
+    ]
+}
