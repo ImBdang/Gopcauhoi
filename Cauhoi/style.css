@@ -1,0 +1,30 @@
+.cauhoi {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.2s;
+}
+
+.cauhoi:hover {
+  background-color: #f1f1f1;
+}
+
+.cauhoi p:first-child {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.cauhoi p {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.cauhoi p:hover {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding-left: 4px;
+}
