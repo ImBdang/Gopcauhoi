@@ -1,3 +1,4 @@
+import os
 import json
 
 def read_data(cauhoi):
@@ -80,9 +81,8 @@ def tao_cauhoi(path, name, data):
     s = gen_string(data)
 
     try:
-        with open(f"{path}/Cauhoi/{name}.html", "w", encoding="utf-8") as f:
+        with open(os.path.join(path, "Cauhoi", f"{name}.html"), "w", encoding="utf-8") as f:
             f.write(s)
-            print(f"{path}/Cauhoi/{name}.html")
     except Exception as e:
         print(f"Loi khi tao file cau hoi: {e}")
         return False
