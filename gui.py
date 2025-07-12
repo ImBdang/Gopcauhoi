@@ -1,10 +1,21 @@
 import os
+import sys
 import data_worker as worker
 import tkinter as tk
 
-root_path = os.path.dirname(os.path.abspath(__file__))
 danhsach_id = []
 cauhoi_root = []
+
+def get_dir():
+    path = ""
+    if getattr(sys, 'frozen', False):
+        path = os.path.dirname(sys.executable)
+    else:
+        path = os.path.dirname(os.path.abspath(__file__))
+    return path
+
+root_path = get_dir()
+
 
 
 def button_import_click(text_box, label_trangthai, text_box_name, label_soluong):
