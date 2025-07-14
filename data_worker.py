@@ -10,61 +10,104 @@ def read_data(cauhoi):
 
 def add_question(data_root, data, danhsach):
     for item in data:
-        if item['id'] not in danhsach:
+        if item['id'] not in danhsach and item['group_id'] == 0:
             danhsach.append(item['id'])
             data_root.append(item)
-
-    for item in data_root:
-        if item['group_id'] != 0:
-            if item['group_id'] in danhsach:
-                for i in range(len(data_root)):
-                    if data_root[i]['id'] == item['group_id']:
-                        s =f"<p>{item['question_direction']}</p>\n\n"
-                        data_root[i]['question_direction'] += s
-                        data_root.remove(item)
-                        break
-                for i in danhsach:
-                    if item['group_id'] == i:
-                        danhsach.remove(i)
-                        break
-
-
+       
     return data_root, danhsach
 
 
 def gen_string(data):
     s = '<link rel="stylesheet" href="style.css">\n'
     for item in data:
+        if item["group_id"] != 0:
+            continue
+        s += "<div class='cauhoi'>\n"
+        #checkbox template
         if item['question_type'] == "checkbox":
-            s += "<div class='cauhoi'>\n"
             cauhoi = item['question_direction']
-
             hint = ""
             if item["question_type"] == "checkbox":
                 hint = f"(Chon {item['number_answer_correct']} dap an)"
             s += f"{cauhoi} {hint}\n"
-
+            s += "<form>\n"
             for ans in item["answer_option"]:
                 dapan = ans['value']
-                s += f"\t{dapan}\n\n"
-
+                s += f"\t<input type='checkbox' name='answer' value='{dapan}'>{dapan}<br>\n"
+            s += "</form>\n"
             s += "</div>\n\n"
         
+        #drag_drop template
         elif item['question_type'] == "drag_drop":
-            s += "<div class='cauhoi'>\n"
-
             cauhoi = item['question_direction']
             s += f"{cauhoi}\n"
 
+            #cac dap an co the keo
+            s += "<p>(Cac dap an)</p>\n"
+            s += "<div class='drag_ans_zone'>\n"
             for ans in item["answer_option"]:
-
-                dapan =f"<p>{ans['value']}</p>"
+                dapan =f"<div class='drag_ans'>{ans['value']}</div>"
                 s += f"\t{dapan}\n\n"
+            s += "</div>\n"
+
+            #khu vuc keo dap an vao
+            s += "<p>(Cac lua chon tuong duong voi dap an)</p>\n\n\n"
+            s += "<div class='ans_to_drag'>\n"
+            for jtem in data:
+                if jtem['group_id'] == item['id']:
+                    s += "<div class='drop_zone'>\n"
+                    s += f"<p>{jtem['question_direction']}</p>\n"
+                    s += "</div>\n"
+            s += "</div>\n"
 
             s += "</div>\n\n"
 
+        #group-input template
+        elif item['question_type'] == "group-input":
+            cauhoi = item['question_direction']
+            s += f"{cauhoi}\n"
+
+      
+            idx = 1
+            for jtem in data:
+                if jtem['group_id'] == item['id']:
+                    s += "<div class='input_zone'>\n"
+
+                    s += f"<p>{idx}) {jtem['question_direction']}</p>\n"
+                    s += "<input type='text' name='answer'>\n"
+
+                    s += "</div>\n"
+                    idx += 1
+
+            s += "</div>\n\n"
+
+        #grouping template
+        elif item['question_type'] == "grouping":
+            cauhoi = item['question_direction']
+            s += f"{cauhoi}\n"
+
+            s += "<p>(Cac dap an)</p>\n"
+            s += "<div class='grouping_ans_zone'>\n"
+            for ans in item["answer_option"]:
+                dapan =f"<div class='grouping_ans'>{ans['value']}</div>"
+                s += f"\t{dapan}\n\n"
+
+            idx = 1
+            for jtem in data:
+                if jtem['group_id'] == item['id']:
+                    s += "<div class='grouping_zone'>\n"
+
+                    s += f"<p>{idx}) {jtem['question_direction']}</p>\n"
+                    s += "<input type='text' name='answer'>\n"
+
+                    s += "</div>\n"
+                    idx += 1
+
+            s += "</div>\n\n"
+
+        #default template
         else:
-            s += "<div class='cauhoi'>\n"
+  
             cauhoi = item['question_direction']
             s += f"{cauhoi}\n"
 
@@ -72,8 +115,9 @@ def gen_string(data):
                 dapan = ans['value']
                 s += f"\t{dapan}\n\n"
 
-            s += "</div>\n\n"
+        s += "</div>\n\n"
     return s
+
 
 
 def tao_cauhoi(path, name, data):

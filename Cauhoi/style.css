@@ -28,3 +28,49 @@
   border-radius: 4px;
   padding-left: 4px;
 }
+
+.drag_ans_zone {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: move;
+}
+
+.drag_ans {
+  border: #333 1px solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+.grouping_ans_zone {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: move;
+}
+
+.grouping_ans {
+  border: #333 1px solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+
+
+.input_zone input{
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.grouping_zone input{
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
