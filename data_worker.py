@@ -19,8 +19,8 @@ def add_question(data_root, data, danhsach):
 
 
 def gen_string(data):
-    s = "<link rel='stylesheet' href='style.css'>\n"
-    # s = get_style()
+    # s = "<link rel='stylesheet' href='style.css'>\n"
+    s = get_style()
 
     stt = 1
     for item in data:
