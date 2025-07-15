@@ -19,8 +19,9 @@ def add_question(data_root, data, danhsach):
 
 
 def gen_string(data):
-    # s = "<link rel='stylesheet' href='style.css'>\n"
-    s = get_style()
+    s = "<link rel='stylesheet' href='style.css'>\n"
+    # s = get_style()
+
     stt = 1
     for item in data:
         if item["group_id"] != 0:
@@ -129,7 +130,7 @@ def gen_string(data):
                     s += "<div class='radio_ans'>\n"
                     for ans in jtem["answer_option"]:
                         dapan = ans['value']
-                        s += f"<p style='font-weight: normal'>{dapan}</p>\n"
+                        s += f"<p>{dapan}</p>\n"
                     s += "</div>\n\n"
                     s += "</div>\n"
                     idx += 1
@@ -154,215 +155,211 @@ def gen_string(data):
 def get_style():
     return '''
 <style>
-    :root {
+:root {
     --primary-color: #4CAF50;
     --secondary-color: #2196F3;
     --accent-color: #FFC107;
 
-    --text-color-dark: #333;
-    --text-color-light: #666;
-    --background-light: #f8f9fa;
-    --background-card: #ffffff;
-    --background-hover: #e9ecef;
-    --border-color: #e0e0e0;
-    --shadow-base: rgba(0, 0, 0, 0.04);
-    --shadow-hover: rgba(0, 0, 0, 0.08);
-    }
+    --text-color-dark: #222;
+    --text-color-light: #555;
 
-    body {
+    --background-light: #f0f4f8;
+    --background-card: #ffffff;
+    --background-hover: #f1f8e9;
+    --border-color: #d0d7de;
+    --shadow-base: rgba(0, 0, 0, 0.05);
+    --shadow-hover: rgba(0, 0, 0, 0.1);
+}
+
+body {
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     color: var(--text-color-dark);
     background-color: var(--background-light);
     line-height: 1.5;
     margin: 0;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    }
+}
 
-    .cauhoi {
+.cauhoi {
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: var(--background-card);
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 6px var(--shadow-base);
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px var(--shadow-base);
+    transition: all 0.3s ease-in-out;
     width: 100%;
-    max-width: 600px; /* Giảm max-width thêm */
+    max-width: 680px;
     box-sizing: border-box;
-    }
+}
 
-    .cauhoi:hover {
+.cauhoi:hover {
     background-color: var(--background-hover);
-    box-shadow: 0 5px 10px var(--shadow-hover);
-    transform: translateY(-1px);
-    }
+    box-shadow: 0 6px 18px var(--shadow-hover);
+    transform: translateY(-2px);
+}
 
-    .cauhoi p:first-child {
+.cauhoi > p:first-of-type {
     font-weight: 700;
-    font-size: 1.1em;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin-bottom: 14px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px;
     color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 6px;
-    line-height: 1.2;
-    }
+}
 
-    .cauhoi p:not(:first-child) {
+.cauhoi p:not(:first-child) {
     margin: 6px 0;
-    padding: 6px 10px;
+    padding: 8px 12px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s ease-in-out, padding-left 0.2s ease-in-out, color 0.2s ease-in-out;
-    }
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
 
-    .cauhoi p:not(:first-child):hover {
-    background-color: var(--background-hover);
-    padding-left: 14px;
+.cauhoi p:not(:first-child):hover {
+    background-color: #e8f5e9;
     color: var(--secondary-color);
-    }
+}
 
-    .drag_ans_zone,
-    .grouping_ans_zone,
-    .radio_zone {
+/* Zones */
+.drag_ans_zone,
+.grouping_ans_zone,
+.radio_zone {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Giảm khoảng cách giữa các mục */
-    margin: 10px 0 15px 0;
-    padding: 8px 10px;
-    border-radius: 6px;
-    background-color: var(--background-hover);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
-    }
+    gap: 10px;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f5faff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 
-    .drag_ans,
-    .grouping_ans,
-    .radio_ans {
-    border: 1px solid var(--primary-color);
-    background-color: var(--background-card);
-    color: var(--text-color-dark);
-    padding: 6px 12px; /* Giảm padding */
-    border-radius: 5px;
-    cursor: grab;
-    box-shadow: 0 1px 2px var(--shadow-base);
-    transition: all 0.15s ease-in-out;
-    }
+.radio_zone {
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-    .drag_ans:hover,
-    .grouping_ans:hover,
-    .radio_ans:hover {
-    background-color: #E8F5E9;
-    border-color: #388E3C;
-    box-shadow: 0 2px 4px var(--shadow-hover);
-    transform: translateY(-0.5px);
-    }
-
-    .input_zone input,
-    .grouping_zone input {
-    width: calc(100% - 16px);
-    padding: 8px; /* Giảm padding */
-    margin: 6px 0;
+/* Answer blocks */
+.radio_ans,
+.drag_ans,
+.grouping_ans {
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 0.95em;
+    background-color: #ffffff;
     color: var(--text-color-dark);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: grab;
+    box-shadow: 0 1px 3px var(--shadow-base);
+    transition: all 0.2s ease;
+}
 
-    .input_zone input:focus,
-    .grouping_zone input:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);
-    outline: none;
-    }
+.radio_ans:hover,
+.drag_ans:hover,
+.grouping_ans:hover {
+    background-color: #e3fcef;
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 6px var(--shadow-hover);
+}
 
-    .drop_zone {
-    border: 1.5px dashed var(--secondary-color); 
-    border-radius: 5px;
+.radio_ans p {
+    margin: 4px 0;
+    font-weight: normal;
+    color: var(--text-color-dark);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.radio_ans p:hover {
+    background-color: #f1f8e9;
+}
+
+/* Inputs */
+.input_zone input,
+.grouping_zone input {
+    width: 100%;
     padding: 10px;
-    margin: 6px 0;
+    margin: 8px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input_zone input:focus,
+.grouping_zone input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+    outline: none;
+}
+
+/* Drop zone */
+.drop_zone {
+    border: 2px dashed var(--secondary-color);
+    border-radius: 6px;
+    padding: 14px;
+    margin: 8px 0;
     background-color: #e3f2fd;
-    min-height: 40px; 
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95em;
     color: var(--text-color-dark);
     text-align: center;
-    }
+    font-size: 1em;
+}
 
-    .drop_zone p {
-    margin: 0;
-    font-weight: 500;
-    }
+/* Form controls */
+form input[type="checkbox"],
+form input[type="radio"] {
+    margin-right: 6px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
-    .radio_zone {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
+form label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 0;
+    gap: 6px;
+    font-size: 0.95em;
+}
 
-    .radio_zone > p {
-        font-weight: 600;
-        color: var(--text-color-dark);
-        margin-bottom: 6px;
-    }
+form br {
+    display: none;
+}
 
-    .radio_ans {
-    border: 1px solid var(--border-color);
-    background-color: var(--background-card);
-    margin: 5px 0;
-    padding: 8px 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 1px var(--shadow-light);
-    width: calc(100% - 20px);
-    box-sizing: border-box;
-    }
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-color-dark); /* Giữ màu chữ tối để dễ đọc trên nền sáng */
+  line-height: 1.5;
+  margin: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
 
-    .radio_ans p {
-        margin: 3px 0;
-        font-weight: normal;
-        color: var(--text-color-dark);
-        cursor: pointer;
-        padding: 3px 5px;
-        border-radius: 3px;
-        transition: background-color 0.15s ease-in-out;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    .radio_ans p:hover {
-        background-color: var(--background-hover);
-    }
-
-    form {
-        margin-top: 10px;
-    }
-
-    form input[type="checkbox"],
-    form input[type="radio"] {
-        margin-right: 5px;
-        transform: scale(1.0); 
-        cursor: pointer;
-    }
-
-    form label {
-        display: inline-block;
-        margin-bottom: 5px;
-        cursor: pointer;
-        padding: 3px 0;
-    }
-
-    form br {
-        display: none;
-    }
-
-    form input[type="checkbox"] + label,
-    form input[type="radio"] + label {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-    }
+  /* BACKGROUND MỚI */
+  background: linear-gradient(
+    135deg, /* Góc chuyển màu: 135 độ */
+    #ff7e5f, /* Màu 1: Cam đào */
+    #feb47b, /* Màu 2: Vàng cam */
+    #86a8e7, /* Màu 3: Xanh nhạt */
+    #91eae4  /* Màu 4: Xanh ngọc */
+  );
+  /* Fallback nếu gradient không được hỗ trợ */
+  background-color: #ff7e5f;
+}
 </style>
 '''
 
