@@ -74,3 +74,17 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.radio_zone {
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: move;
+}
+
+.radio_ans {
+  border: #333 1px solid;
+  margin: 10px;
+  padding: 10px;
+}

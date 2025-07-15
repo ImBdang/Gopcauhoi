@@ -10,15 +10,16 @@ def read_data(cauhoi):
 
 def add_question(data_root, data, danhsach):
     for item in data:
-        if item['id'] not in danhsach and item['group_id'] == 0:
-            danhsach.append(item['id'])
+        if item['id'] not in danhsach:
+            if item['group_id'] == 0:
+                danhsach.append(item['id'])
             data_root.append(item)
-       
     return data_root, danhsach
 
 
 def gen_string(data):
     s = '<link rel="stylesheet" href="style.css">\n'
+    stt = 1
     for item in data:
         if item["group_id"] != 0:
             continue
@@ -29,7 +30,7 @@ def gen_string(data):
             hint = ""
             if item["question_type"] == "checkbox":
                 hint = f"(Chon {item['number_answer_correct']} dap an)"
-            s += f"{cauhoi} {hint}\n"
+            s += f"Cau {stt}:{cauhoi} {hint}\n"
             s += "<form>\n"
             for ans in item["answer_option"]:
                 dapan = ans['value']
@@ -40,7 +41,7 @@ def gen_string(data):
         #drag_drop template
         elif item['question_type'] == "drag_drop":
             cauhoi = item['question_direction']
-            s += f"{cauhoi}\n"
+            s += f"Cau {stt}:{cauhoi}\n"
 
             #cac dap an co the keo
             s += "<p>(Cac dap an)</p>\n"
@@ -65,7 +66,7 @@ def gen_string(data):
         #group-input template
         elif item['question_type'] == "group-input":
             cauhoi = item['question_direction']
-            s += f"{cauhoi}\n"
+            s += f"Cau {stt}:{cauhoi}\n"
 
       
             idx = 1
@@ -84,7 +85,7 @@ def gen_string(data):
         #grouping template
         elif item['question_type'] == "grouping":
             cauhoi = item['question_direction']
-            s += f"{cauhoi}\n"
+            s += f"Cau {stt}:{cauhoi}\n"
 
             s += "<p>(Cac dap an)</p>\n"
             s += "<div class='grouping_ans_zone'>\n"
@@ -105,17 +106,39 @@ def gen_string(data):
 
             s += "</div>\n\n"
 
+        elif item['question_type'] == "group-radio":
+            cauhoi = item['question_direction']
+            s += f"Cau {stt}:{cauhoi}\n"
+
+      
+            idx = 1
+            for jtem in data:
+                if jtem['group_id'] == item['id']:
+                    s += "<div class='radio_zone'>\n"
+
+                    s += f"<p>{idx}) {jtem['question_direction']}</p>\n"
+                    s += "<div class='radio_ans'>\n"
+                    for ans in jtem["answer_option"]:
+                        dapan = ans['value']
+                        s += f"<p style='font-weight: normal'>{dapan}</p>\n"
+                    s += "</div>\n\n"
+                    s += "</div>\n"
+                    idx += 1
+
+            s += "</div>\n\n"
+
         #default template
         else:
   
             cauhoi = item['question_direction']
-            s += f"{cauhoi}\n"
+            s += f"Cau {stt}:{cauhoi}\n"
 
             for ans in item["answer_option"]:
                 dapan = ans['value']
                 s += f"\t{dapan}\n\n"
 
         s += "</div>\n\n"
+        stt += 1
     return s
 
 
