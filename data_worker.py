@@ -21,6 +21,8 @@ def add_question(data_root, data, danhsach):
 def gen_string(data):
     # s = "<link rel='stylesheet' href='style.css'>\n"
     s = get_style()
+    s += "<meta charset='UTF-8'>\n"
+    s += '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
 
     stt = 1
     for item in data:
