@@ -1,6 +1,66 @@
 from bs4 import BeautifulSoup as soup
 import os
 import json
+from crc32 import return_signature
+import requests
+import base64
+
+token1 = ""
+label_trangthai = None
+
+def fetch_img(name):
+    url = f"https://apps.ictu.edu.vn:9087/ionline/api/aws/file/{name}"
+    body = {}
+
+    headers = {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Authorization": f"Bearer {token1}",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Host": "apps.ictu.edu.vn:9087",
+        "Origin": "https://lms.ictu.edu.vn",
+        "Referer": "https://lms.ictu.edu.vn/",
+        "Sec-CH-UA": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"",
+        "Sec-CH-UA-Mobile": "?0",
+        "Sec-CH-UA-Platform": "\"Windows\"",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "X-App-Id": "7040BD38-0D02-4CBE-8B0E-F4115C348003",
+        "X-Request-Signature": return_signature("POST", body)
+    }
+
+    response = requests.post(url, headers=headers, json=body)
+
+    link_to_img = response.json().get("data")
+    if link_to_img:
+        res = requests.get(link_to_img)
+        img = res.content
+        image_base64 = base64.b64encode(img).decode("utf-8")
+        mime_type = "image/png" 
+        data_uri = f"data:{mime_type};base64,{image_base64}"
+        return data_uri
+    else:
+        return False
+
+
+def search_img(dulieu):
+    soup_obj = soup(dulieu, "html.parser")
+    img_tags = soup_obj.find_all("img")
+    for img in img_tags:
+        if img.has_attr("src"):
+            img_beta = fetch_img(img["src"])
+            if img_beta:
+                img["src"] = img_beta
+            else:
+                label_trangthai.config(text="Token het han", fg="red")
+                return False
+            
+    return soup_obj.prettify()
+
 
 def read_data(cauhoi):
     try:
@@ -33,22 +93,29 @@ def gen_string(data):
         #checkbox template
         if item['question_type'] == "checkbox":
             cauhoi = item['question_direction']
-
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             hint = ""
             if item["question_type"] == "checkbox":
                 hint = f"(Chon {item['number_answer_correct']} dap an)"
             s += f"Cau {stt}:{cauhoi} {hint}\n"
-            s += "<form>\n"
+     
             for ans in item["answer_option"]:
                 dapan = ans['value']
-                dapan = soup(dapan, "html.parser").text.strip()
-                s += f"\t<div><input type='checkbox' name='answer' value='{dapan}'>{dapan}<br></div>\n"
-            s += "</form>\n"
+                dapan = search_img(dapan)
+                if dapan == False:
+                    return False
+                s += f"\t<div style='display: flex; align-items: center; gap: 2px; margin-bottom: 5px'><input type='checkbox' name='answer'>{dapan}</div>\n"
+           
             s += "</div>\n\n"
         
         #drag_drop template
         elif item['question_type'] == "drag_drop":
             cauhoi = item['question_direction']
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             s += "<div>\n"
             s += f"Cau {stt}:{cauhoi}\n"
 
@@ -57,6 +124,9 @@ def gen_string(data):
             s += "<div class='drag_ans_zone'>\n"
             for ans in item["answer_option"]:
                 dapan =f"<div class='drag_ans'>{ans['value']}</div>"
+                dapan = search_img(dapan)
+                if cauhoi == False:
+                    return False
                 s += f"\t{dapan}\n\n"
             s += "</div>\n"
             s += "</div>\n"
@@ -77,33 +147,34 @@ def gen_string(data):
         #group-input template
         elif item['question_type'] == "group-input":
             cauhoi = item['question_direction']
-
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             s += f"Cau {stt}:{cauhoi}\n"
-
-      
             idx = 1
             for jtem in data:
                 if jtem['group_id'] == item['id']:
                     s += "<div class='input_zone'>\n"
-
                     s += f"<p>{idx}) {jtem['question_direction']}</p>\n"
                     s += "<input type='text' name='answer'>\n"
-
                     s += "</div>\n"
                     idx += 1
-
             s += "</div>\n\n"
 
         #grouping template
         elif item['question_type'] == "grouping":
             cauhoi = item['question_direction']
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             s += "<div>\n"
             s += f"Cau {stt}:{cauhoi}\n"
-
-            s += "<p>(Cac dap an)</p>\n"
             s += "<div class='grouping_ans_zone'>\n"
             for ans in item["answer_option"]:
-                dapan =f"<div class='grouping_ans'>{ans['value']}</div>"
+                dapan =f"<div class='grouping_ans'>{ans['value']}</div>"  
+                dapan = search_img(dapan)
+                if dapan == False:
+                    return False
                 s += f"\t{dapan}\n\n"
             s += "</div>\n"
             idx = 1
@@ -120,22 +191,29 @@ def gen_string(data):
             s += "</div>\n"
             s += "</div>\n\n"
 
+
+        #group-radio template
         elif item['question_type'] == "group-radio":
             cauhoi = item['question_direction']
-
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             s += f"Cau {stt}:{cauhoi}\n"
-
-      
             idx = 1
             for jtem in data:
                 if jtem['group_id'] == item['id']:
                     s += "<div class='radio_zone'>\n"
 
                     s += f"<p>{idx}) {jtem['question_direction']}</p>\n"
+
                     s += "<div class='radio_ans'>\n"
                     for ans in jtem["answer_option"]:
                         dapan = ans['value']
+                        dapan = search_img(dapan)
+                        if dapan == False:
+                            return False
                         s += f"<p>{dapan}</p>\n"
+           
                     s += "</div>\n\n"
                     s += "</div>\n"
                     idx += 1
@@ -144,13 +222,20 @@ def gen_string(data):
 
         #default template
         else:
-  
+            s += "<div>\n"
             cauhoi = item['question_direction']
-
+            cauhoi = search_img(cauhoi)
+            if cauhoi == False:
+                return False
             s += f"Cau {stt}:{cauhoi}\n"
+         
+            s += "</div>\n"
 
             for ans in item["answer_option"]:
                 dapan = ans['value']
+                dapan = search_img(dapan)
+                if dapan == False:
+                    return False
                 s += f"<div class='dapan'>{dapan}</div>\n\n"
 
         s += "</div>\n\n"
@@ -378,7 +463,7 @@ body {
     #86a8e7, /* Màu 3: Xanh nhạt */
     #91eae4  /* Màu 4: Xanh ngọc */
   );
-  /* Fallback nếu gradient không được hỗ trợ */
+  /* Fallback nếu gradient không được shỗ trợ */
   background-color: #ff7e5f;
 }
 
@@ -407,14 +492,17 @@ body {
 </style>
 '''
 
-def tao_cauhoi(path, name, data):
-    
+def tao_cauhoi(path, name, data, token, label):
+    global token1,label_trangthai
+    token1 = token
+    label_trangthai = label
     s = gen_string(data)
-
+    if  s == False:
+        return False
     try:
         with open(os.path.join(path, "Cauhoi", f"{name}.html"), "w", encoding="utf-8") as f:
             f.write(s)
     except Exception as e:
-        print(f"Loi khi tao file cau hoi: {e}")
+        label_trangthai.config(text="Khong the tao file", fg="red")
         return False
     return True

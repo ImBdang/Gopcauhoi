@@ -5,6 +5,7 @@ import tkinter as tk
 
 danhsach_id = []
 cauhoi_root = []
+token = ""
 
 def get_dir():
     path = ""
@@ -45,7 +46,7 @@ def button_clear_click(text_box, label_soluong):
     cauhoi_root = []
   
 
-def button_gen_click(text_box_name, label_trangthai):
+def button_gen_click(text_box_name, label_trangthai, token):
     if ( len(danhsach_id) == 0):
         label_trangthai.config(text="Khong co cau hoi nao", fg="red")
         return
@@ -56,15 +57,57 @@ def button_gen_click(text_box_name, label_trangthai):
     if not os.path.exists(os.path.join(root_path, "Cauhoi")):
         os.mkdir("Cauhoi")
     
-    noti = worker.tao_cauhoi(root_path, name, cauhoi_root)
+    noti = worker.tao_cauhoi(root_path, name, cauhoi_root, token, label_trangthai)
     if noti:
         label_trangthai.config(text="Tao thanh cong", fg="green")
-    else:
-        label_trangthai.config(text="Loi, khong tao duoc", fg="red")
 
-    
+
+def read_token():
+    global token
+    try:
+        with open(os.path.join(root_path, "token.txt"), "r") as f:
+            token = f.read().strip()
+    except FileNotFoundError:
+        token = ""
+        with open(os.path.join(root_path,"token.txt"), "w") as f:
+            f.write("")
+    return token
+
+def write_token(token):
+    with open(os.path.join(root_path, "token.txt"), "w") as f:
+        f.write(token)
+
+def write_token_click(text_box, label_trangthai, window):
+    global token
+    t = text_box.get("1.0", tk.END).strip()
+    write_token(t)
+    label_trangthai.config(text="Da them token", fg="green")
+    token = read_token()
+    window.destroy()
+
+
+
+def button_import_token_click(label_trangthai):
+    global token
+
+    window = tk.Toplevel()
+    window.title("Nhap token")
+    window.geometry("400x270")
+    window.configure(bg="gray")
+    text_box = tk.Text(window, wrap=tk.WORD, width=90, height=24,  font=("Arial", 14))
+    text_box.place(x=10, y=10, width=370, height=170) 
+
+    button_import = tk.Button(window, text="Them du lieu", font=("Arial", 14), cursor="hand2")
+    button_import.place(x=125, y=200, width=150, height=50)
+    button_import.config(command=lambda: write_token_click(text_box, label_trangthai, window))
+
+
+
 
 def main():
+    global token
+    token = read_token()
+
     soluong = 0
     root = tk.Tk()
     root.title("Tong hop cau hoi")
@@ -100,7 +143,12 @@ def main():
 
     button_gen = tk.Button(root, text="Tao file cau hoi", font=("Arial", 14), cursor="hand2")
     button_gen.place(x=780, y=655, width=150, height=50)
-    button_gen.config(command=lambda: button_gen_click(text_box_name, label_trangthai))
+    button_gen.config(command=lambda: button_gen_click(text_box_name, label_trangthai, token))
+
+    button_token = tk.Button(root, text="Import token", font=("Arial", 14), cursor="hand2")
+    button_token.place(x=1100, y=655, width=150, height=50)
+    button_token.config(command=lambda: button_import_token_click(label_trangthai))
+
 
     root.mainloop()
 
