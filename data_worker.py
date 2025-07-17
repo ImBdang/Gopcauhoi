@@ -37,7 +37,7 @@ def gen_string(data):
             hint = ""
             if item["question_type"] == "checkbox":
                 hint = f"(Chon {item['number_answer_correct']} dap an)"
-            s += f"Cau {stt}:{cauhoi}\n"
+            s += f"Cau {stt}:{cauhoi} {hint}\n"
             s += "<form>\n"
             for ans in item["answer_option"]:
                 dapan = ans['value']
@@ -49,7 +49,7 @@ def gen_string(data):
         #drag_drop template
         elif item['question_type'] == "drag_drop":
             cauhoi = item['question_direction']
-
+            s += "<div>\n"
             s += f"Cau {stt}:{cauhoi}\n"
 
             #cac dap an co the keo
@@ -59,8 +59,10 @@ def gen_string(data):
                 dapan =f"<div class='drag_ans'>{ans['value']}</div>"
                 s += f"\t{dapan}\n\n"
             s += "</div>\n"
+            s += "</div>\n"
 
             #khu vuc keo dap an vao
+            s += "<div>\n"
             s += "<p>(Cac lua chon tuong duong voi dap an)</p>\n\n\n"
             s += "<div class='ans_to_drag'>\n"
             for jtem in data:
@@ -69,7 +71,7 @@ def gen_string(data):
                     s += f"<p>{jtem['question_direction']}</p>\n"
                     s += "</div>\n"
             s += "</div>\n"
-
+            s += "</div>\n"
             s += "</div>\n\n"
 
         #group-input template
@@ -95,7 +97,7 @@ def gen_string(data):
         #grouping template
         elif item['question_type'] == "grouping":
             cauhoi = item['question_direction']
-
+            s += "<div>\n"
             s += f"Cau {stt}:{cauhoi}\n"
 
             s += "<p>(Cac dap an)</p>\n"
@@ -103,8 +105,9 @@ def gen_string(data):
             for ans in item["answer_option"]:
                 dapan =f"<div class='grouping_ans'>{ans['value']}</div>"
                 s += f"\t{dapan}\n\n"
-
+            s += "</div>\n"
             idx = 1
+            s += "<div>\n"
             for jtem in data:
                 if jtem['group_id'] == item['id']:
                     s += "<div class='grouping_zone'>\n"
@@ -114,7 +117,7 @@ def gen_string(data):
 
                     s += "</div>\n"
                     idx += 1
-
+            s += "</div>\n"
             s += "</div>\n\n"
 
         elif item['question_type'] == "group-radio":
@@ -148,10 +151,26 @@ def gen_string(data):
 
             for ans in item["answer_option"]:
                 dapan = ans['value']
-                s += f"\t{dapan}\n\n"
+                s += f"<div class='dapan'>{dapan}</div>\n\n"
 
         s += "</div>\n\n"
         stt += 1
+    s += '''
+    <script>
+    document.querySelectorAll('.cauhoi').forEach(function(cauhoi) {
+    cauhoi.querySelectorAll('.dapan').forEach(function(dapan) {
+        dapan.addEventListener('click', function() {
+    
+        cauhoi.querySelectorAll('.dapan').forEach(function(item) {
+            item.classList.remove('selected');
+        });
+
+        dapan.classList.add('selected');
+        });
+    });
+    });
+    </script>
+    '''
     return s
 
 def get_style():
@@ -361,6 +380,29 @@ body {
   );
   /* Fallback nếu gradient không được hỗ trợ */
   background-color: #ff7e5f;
+}
+
+.dapan {
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dapan p {
+    padding-left: 10px;
+}
+
+.dapan:hover {
+  background-color: #ddd;
+}
+
+.dapan.selected {
+  background-color: #ffc107; /* vàng sáng */
+  font-weight: bold;
+  color: #000;
 }
 </style>
 '''
