@@ -34,7 +34,11 @@ def button_import_click(text_box, label_trangthai, text_box_name, label_soluong)
     cauhoi = data["data"][0]["test"]
 
     cauhoi_root, danhsach_id = worker.add_question(cauhoi_root, cauhoi, danhsach_id)
-    label_soluong.config(text=f"So luong cau hoi: {len(danhsach_id)}", fg="black")
+    count = 0
+    for i in cauhoi_root:
+       if i['group_id'] == 0:
+           count += 1
+    label_soluong.config(text=f"So luong cau hoi: {count}", fg="black")
     text_box.delete("1.0", tk.END)
    
 

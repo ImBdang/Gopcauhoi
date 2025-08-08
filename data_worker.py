@@ -72,8 +72,7 @@ def read_data(cauhoi):
 def add_question(data_root, data, danhsach):
     for item in data:
         if item['id'] not in danhsach:
-            if item['group_id'] == 0:
-                danhsach.append(item['id'])
+            danhsach.append(item['id'])
             data_root.append(item)
     return data_root, danhsach
 

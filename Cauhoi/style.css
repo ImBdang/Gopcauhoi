@@ -1,31 +1,47 @@
+/* Root CSS Variables for Consistent Styling */
 :root {
-    --primary-color: #4CAF50;
-    --secondary-color: #2196F3;
-    --accent-color: #FFC107;
+    --primary-color: #4CAF50;    /* Green */
+    --secondary-color: #2196F3;  /* Blue */
+    --accent-color: #FFC107;     /* Amber/Yellow */
 
-    --text-color-dark: #222;
-    --text-color-light: #555;
+    --text-color-dark: #222;     /* Dark grey for main text */
+    --text-color-light: #555;    /* Lighter grey for secondary text */
 
-    --background-light: #f0f4f8;
-    --background-card: #ffffff;
-    --background-hover: #f1f8e9;
-    --border-color: #d0d7de;
-    --shadow-base: rgba(0, 0, 0, 0.05);
-    --shadow-hover: rgba(0, 0, 0, 0.1);
+    --background-light: #f0f4f8; /* Light greyish blue for general background */
+    --background-card: #ffffff;  /* White for card backgrounds */
+    --background-hover: #f1f8e9; /* Light green for hover states */
+    --border-color: #d0d7de;     /* Light grey for borders */
+    --shadow-base: rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    --shadow-hover: rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow on hover */
 }
 
+/* Base Body Styles */
 body {
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     color: var(--text-color-dark);
-    background-color: var(--background-light);
     line-height: 1.5;
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px; /* Increased padding for better spacing */
+    min-height: 100vh; /* Ensures body takes full viewport height */
+
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+
+    /* Dynamic Background Gradient */
+    background: linear-gradient(
+        135deg, /* Angle for the gradient */
+        #ff7e5f, /* Peach/Orange */
+        #feb47b, /* Orange-Yellow */
+        #86a8e7, /* Light Blue */
+        #91eae4  /* Teal/Aqua */
+    );
+    /* Fallback for browsers that don't support gradients */
+    background-color: #ff7e5f;
 }
 
+/* --- Question Container Styling --- */
 .cauhoi {
     border: 1px solid var(--border-color);
     border-radius: 12px;
@@ -33,27 +49,29 @@ body {
     padding: 20px 24px;
     margin-bottom: 20px;
     box-shadow: 0 4px 12px var(--shadow-base);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
     width: 100%;
-    max-width: 680px;
-    box-sizing: border-box;
+    max-width: 680px; /* Limits the overall width of the question box */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
 .cauhoi:hover {
     background-color: var(--background-hover);
     box-shadow: 0 6px 18px var(--shadow-hover);
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
+/* Styling for the first paragraph (question text) within .cauhoi */
 .cauhoi > p:first-of-type {
-    font-weight: 700;
-    font-size: 1.2em;
+    font-weight: 700; /* Bold font for question */
+    font-size: 1.2em; /* Slightly larger font size */
     margin-bottom: 14px;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color); /* Underline with primary color */
     padding-bottom: 8px;
     color: var(--primary-color);
 }
 
+/* Styling for other paragraphs (likely options) within .cauhoi */
 .cauhoi p:not(:first-child) {
     margin: 6px 0;
     padding: 8px 12px;
@@ -63,30 +81,30 @@ body {
 }
 
 .cauhoi p:not(:first-child):hover {
-    background-color: #e8f5e9;
-    color: var(--secondary-color);
+    background-color: #e8f5e9; /* Light green on hover */
+    color: var(--secondary-color); /* Change text color on hover */
 }
 
-/* Zones */
+/* --- Answer Zones Styling --- */
 .drag_ans_zone,
 .grouping_ans_zone,
 .radio_zone {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    gap: 10px; /* Spacing between items */
     margin: 12px 0;
     padding: 12px;
     border-radius: 8px;
-    background-color: #f5faff;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    background-color: #f5faff; /* Very light blue background */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Inner shadow */
 }
 
 .radio_zone {
-    flex-direction: column;
+    flex-direction: column; /* Stacks radio options vertically */
     align-items: flex-start;
 }
 
-/* Answer blocks */
+/* --- Individual Answer Block Styles (drag_ans, grouping_ans, radio_ans) --- */
 .radio_ans,
 .drag_ans,
 .grouping_ans {
@@ -95,7 +113,7 @@ body {
     color: var(--text-color-dark);
     padding: 8px 14px;
     border-radius: 6px;
-    cursor: grab;
+    cursor: grab; /* Indicates draggable item */
     box-shadow: 0 1px 3px var(--shadow-base);
     transition: all 0.2s ease;
 }
@@ -103,11 +121,12 @@ body {
 .radio_ans:hover,
 .drag_ans:hover,
 .grouping_ans:hover {
-    background-color: #e3fcef;
+    background-color: #e3fcef; /* Lightest green on hover */
     border-color: var(--primary-color);
     box-shadow: 0 3px 6px var(--shadow-hover);
 }
 
+/* Paragraphs within radio answer blocks */
 .radio_ans p {
     margin: 4px 0;
     font-weight: normal;
@@ -119,13 +138,13 @@ body {
 }
 
 .radio_ans p:hover {
-    background-color: #f1f8e9;
+    background-color: #f1f8e9; /* Lightest green background on hover */
 }
 
-/* Inputs */
+/* --- Input Field Styles --- */
 .input_zone input,
 .grouping_zone input {
-    width: 100%;
+    width: 100%; /* Full width of parent */
     padding: 10px;
     margin: 8px 0;
     border: 1px solid var(--border-color);
@@ -138,17 +157,17 @@ body {
 .input_zone input:focus,
 .grouping_zone input:focus {
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
-    outline: none;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15); /* Blue glow on focus */
+    outline: none; /* Removes default outline */
 }
 
-/* Drop zone */
+/* --- Drop Zone Styles --- */
 .drop_zone {
-    border: 2px dashed var(--secondary-color);
+    border: 2px dashed var(--secondary-color); /* Dashed blue border */
     border-radius: 6px;
     padding: 14px;
     margin: 8px 0;
-    background-color: #e3f2fd;
+    background-color: #e3f2fd; /* Very light blue background */
     min-height: 50px;
     display: flex;
     align-items: center;
@@ -158,11 +177,11 @@ body {
     font-size: 1em;
 }
 
-/* Form controls */
+/* --- Form Control Styles (Checkboxes, Radios, Labels) --- */
 form input[type="checkbox"],
 form input[type="radio"] {
     margin-right: 6px;
-    transform: scale(1.1);
+    transform: scale(1.1); /* Slightly larger checkboxes/radios */
     cursor: pointer;
 }
 
@@ -175,42 +194,16 @@ form label {
     font-size: 0.95em;
 }
 
+/* Hides <br> tags used for spacing in forms, if any */
 form br {
     display: none;
 }
 
-body {
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  color: var(--text-color-dark); /* Giữ màu chữ tối để dễ đọc trên nền sáng */
-  line-height: 1.5;
-  margin: 0;
-  padding: 40px 20px;
-  min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  /* BACKGROUND MỚI */
-  background: linear-gradient(
-    135deg, /* Góc chuyển màu: 135 độ */
-    #ff7e5f, /* Màu 1: Cam đào */
-    #feb47b, /* Màu 2: Vàng cam */
-    #86a8e7, /* Màu 3: Xanh nhạt */
-    #91eae4  /* Màu 4: Xanh ngọc */
-  );
-  /* Fallback nếu gradient không được hỗ trợ */
-  background-color: #ff7e5f;
-}
-
-
-
-
+/* --- General Answer (dapan) Block Styles --- */
 .dapan {
   padding: 5px;
   margin-bottom: 10px;
-  background-color: #eee;
+  background-color: #eee; /* Light grey background */
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
@@ -221,11 +214,33 @@ body {
 }
 
 .dapan:hover {
-  background-color: #ddd;
+  background-color: #ddd; /* Darker grey on hover */
 }
 
 .dapan.selected {
-  background-color: #ffc107; /* vàng sáng */
+  background-color: var(--accent-color); /* Amber/Yellow for selected answer */
   font-weight: bold;
   color: #000;
+}
+
+/* --- Crucial Additions for Image Responsiveness --- */
+/* This ensures all images within .cauhoi and .dapan scale correctly */
+.cauhoi img,
+.dapan img {
+    max-width: 100%; /* Images will never exceed the width of their container */
+    height: auto;    /* Maintain the image's aspect ratio */
+    display: block;  /* Helps with proper spacing and layout */
+    border-radius: 8px; /* Optional: Adds rounded corners to images */
+    margin: 10px 0;  /* Optional: Adds vertical spacing around images */
+}
+
+/* If images are nested inside paragraphs within .cauhoi or .dapan */
+.cauhoi p img,
+.dapan p img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
